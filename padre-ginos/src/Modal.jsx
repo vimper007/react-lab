@@ -20,7 +20,7 @@
 
 
 
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { createPortal } from 'react-dom'
 
 // const Modal = ({ children }) => {
@@ -58,7 +58,7 @@ const Modal = ({ children }) => {
       }
     }, [])
     
-  return createPortal(<div>{children}</div>, modalRoot)
+  return createPortal(<div>{children}</div>, elementRef.current)
 }
 
 export default Modal
