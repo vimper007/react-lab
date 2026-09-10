@@ -1,5 +1,5 @@
 import { usePizzaOfTheDay } from "./usePizzaOfTheDay";
-
+import Modal from './modal'
 // feel free to change en-US / USD to your locale
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -30,6 +30,9 @@ const PizzaOfTheDay = () => {
           alt={pizzaOfTheDay.name}
         />
       </div>
+      <Modal>
+        <h1>Modal</h1>
+      </Modal>
     </div>
   );
 };
