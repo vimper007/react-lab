@@ -30,9 +30,9 @@ const PizzaOfTheDay = () => {
           alt={pizzaOfTheDay.name}
         />
       </div>
-      <Modal>
+      {/* <Modal>
         <h1>Modal</h1>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

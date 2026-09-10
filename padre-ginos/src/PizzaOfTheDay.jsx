@@ -7,6 +7,7 @@ const intl = new Intl.NumberFormat("en-US", {
 });
 
 const PizzaOfTheDay = () => {
+  // const [isVisible] = useState(false)
   const pizzaOfTheDay = usePizzaOfTheDay();
 
   if (!pizzaOfTheDay) {
@@ -30,9 +31,11 @@ const PizzaOfTheDay = () => {
           alt={pizzaOfTheDay.name}
         />
       </div>
+
       <Modal>
         <h1>Modal</h1>
-      </Modal>
+      </Modal> 
+
     </div>
   );
 };

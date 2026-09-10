@@ -23,42 +23,47 @@
 import { useEffect, useRef } from "react"
 import { createPortal } from 'react-dom'
 
-// const Modal = ({ children }) => {
-//     const element = useRef(null)
-//     if(!element.current){
-//         element.current = document.createElement('div')
-//     }
+// Conditional rendering
 
-//     useEffect(() => {
-//       const modalRoot = document.getElementById("modal")
-//       modalRoot.appendChild(element.current)
-    
-//       return () => {
-//         modalRoot.removeChild(element.current)
-//       }
-//     }, [])
-    
-  
-//     return createPortal(<div>{children}</div>, element.current)
+// const Modal = ({ children,  isVisible = false}) => {
+//   const elementRef = useRef(null)
+//   if (!elementRef.current) {
+//     elementRef.current = document.createElement('div')
+//   }
+//   useEffect(() => {
+//     if(!isVisible) return
+//     const modalRoot = document.getElementById('modal')
+//     modalRoot.appendChild(elementRef.current)
+//     return () => {
+//       if(modalRoot.hasChildNodes)
+//       modalRoot.removeChild(elementRef.current)
+//     }
+//   }, [isVisible])
+
+//   if(!isVisible) return null
+//   return createPortal(<div>{children}</div>, elementRef.current)
+
 // }
 
 // export default Modal
 
 const Modal = ({ children }) => {
-    const elementRef = useRef(null)
-    if(!elementRef){
-        elementRef.cuurent = document.createElement('div')
+    const element = useRef(null)
+    if(!element.current){
+        element.current = document.createElement('div')
     }
 
     useEffect(() => {
-        const  modalRoot = document.getElementById('modal')
-        modalRoot.appendChild(elementRef.current)
+      const modalRoot = document.getElementById("modal")
+      modalRoot.appendChild(element.current)
+
       return () => {
-        modalRoot.removeChild(elementRef.current)
+        modalRoot.removeChild(element.current)
       }
     }, [])
-    
-  return createPortal(<div>{children}</div>, elementRef.current)
+
+
+    return createPortal(<div>{children}</div>, element.current)
 }
 
 export default Modal
