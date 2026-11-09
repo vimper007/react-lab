@@ -1,0 +1,89 @@
+<!-- TODO: Check the instructions, then delete this text. -->
+<!-- 🐨 Create (in HTML) an <html> with a <body> with a <div> with the id of "root" -->
+
+<!-- 🐨 Then create a <script type="module"> for your JavaScript -->
+<!--	 📜 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attributes -->
+<!--	 📜 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules -->
+<!--	 📜 https://github.com/mdn/js-examples/tree/master/module-examples -->
+
+<!-- These next instructions are to be written in JavaScript in the <script> tag -->
+
+<!-- 🐨 Get the root div using the JavaScript DOM API -->
+<!--	 💰 Hint, you'll use: document.getElementById('root') -->
+<!--	 📜 https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById -->
+
+<!-- 🐨 Create a div with the JavaScript DOM API: -->
+<!--	 💰 Hint, you'll use: document.createElement('div') -->
+<!--	 📜 https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement -->
+
+<!-- 🐨 Set the div's className property to 'container' -->
+<!--	 💰 element.className = '...' -->
+<!--   📜 https://developer.mozilla.org/en-US/docs/Web/API/Element/className -->
+
+<!-- 🐨 Set the div's textContent to 'Hello World' -->
+<!--	 💰 element.textContent = '...' -->
+<!--	 📜 https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent -->
+
+<!-- 🐨 Append the div to the root div using `append` -->
+<!--	 💰 root.append(div) -->
+<!--	 📜 https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="module" src="./babel-standalone.js" ></script> 
+    <script src="script.tsx" type="text/babel" data-type="module" data-presets="react,typescript"></script> 
+    <!-- <script type="text/babel" data-type="module">
+        const { createRoot } = ReactDOM
+        function Message({ children }) {
+            return <div className="Children">{children}</div>
+        }
+
+        function Calculator({ left, operator, right }) {
+            let output
+            if (operator === '+') output = left + right
+            else if (operator === '-') output = left - right  
+            else if (operator === '*') output = left * right
+            else if (operator === '/') output = left / right
+            return <div>
+                <code>   
+                    {left} {operator} {right} = <output>{output}</output>
+                </code>
+            </div>
+        }
+        // const element = <><Message>Hello World</Message>
+        //     <Message>Goodbye World</Message>
+        //     <message>Test</message>
+        // </>
+
+        // element = <Calculator left={1} operator="+" right={2} />
+        // should render:
+        // <div>
+        //   <code>
+        //     1 + 2 = <output>3</output>
+        //   </code>
+        // </div>
+
+        const element = <Calculator left={3} operator="-" right={10} />
+
+        const root = document.getElementById("root")
+        createRoot(root).render(element)
+    </script> -->
+</head>
+
+<body>
+    <div id="root"></div>
+
+</body>
+
+</html>
