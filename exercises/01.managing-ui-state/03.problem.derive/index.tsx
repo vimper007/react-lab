@@ -1,19 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { generateGradient, getMatchingPosts } from '#shared/blog-posts'
 
 function App() {
 	const [query, setQuery] = useState('')
 	// 🐨 move the words variable from handleCheck to here
+	const words = query.split(' ')
 	// 🦉 this is deriving state!
 
 	// 🐨 create a dogChecked variable that is whether words includes "dog"
 	// and do the same for "cat" and "caterpillar"
+	const isDogChecked = words.includes("dog")
+	const isCatChecked = words.includes("cat")
+	const isCaterpillarChecked = words.includes("caterpillar")
+	useEffect(() => {
+	  console.log("dog:", isDogChecked, " ---- ", "cat:", isCatChecked, " ---- ", "caterpillar:", isCaterpillarChecked)
+	
+	}, [isDogChecked, isCatChecked, isCaterpillarChecked])
+	
 	// 🦉 this is deriving state from derived state!
 
 	function handleCheck(tag: string, checked: boolean) {
 		// 🐨 move the words variable up to just below the useState call
-		const words = query.split(' ')
 		const newWords = checked ? [...words, tag] : words.filter((w) => w !== tag)
 		setQuery(newWords.filter(Boolean).join(' ').trim())
 	}
@@ -36,6 +44,7 @@ function App() {
 						<input
 							type="checkbox"
 							// 🐨 control the checked state of this checkbox by setting the checked prop
+							checked={isDogChecked}
 							onChange={(e) => handleCheck('dog', e.currentTarget.checked)}
 						/>{' '}
 						🐶 dog
@@ -44,6 +53,7 @@ function App() {
 						<input
 							type="checkbox"
 							// 🐨 control the checked state of this checkbox by setting the checked prop
+							checked={isCatChecked}
 							onChange={(e) => handleCheck('cat', e.currentTarget.checked)}
 						/>{' '}
 						🐱 cat
@@ -52,6 +62,7 @@ function App() {
 						<input
 							type="checkbox"
 							// 🐨 control the checked state of this checkbox by setting the checked prop
+							checked={isCaterpillarChecked}
 							onChange={(e) =>
 								handleCheck('caterpillar', e.currentTarget.checked)
 							}
