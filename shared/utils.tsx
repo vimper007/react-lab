@@ -11,6 +11,7 @@ export function setGlobalSearchParams(
 	options: { replace?: boolean } = {},
 ) {
 	const searchParams = new URLSearchParams(window.location.search)
+	console.log(searchParams)
 	for (const [key, value] of Object.entries(params)) {
 		if (!value) searchParams.delete(key)
 		else searchParams.set(key, value)

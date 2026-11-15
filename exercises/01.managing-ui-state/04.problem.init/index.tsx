@@ -5,8 +5,11 @@ import { generateGradient, getMatchingPosts } from '#shared/blog-posts'
 function App() {
 	// 🐨 create a "params" variable that's the URLSearchParams from the search string
 	// 💰 new URLSearchParams(window.location.search)
+	const params = new URLSearchParams(window.location.search)
+	console.log(params.get("query"))
+	const initQuery = params.get("query")
 	// 🐨 initialize the state to the "query" param (fallback to an empty string if it doesn't exist)
-	const [query, setQuery] = useState('')
+	const [query, setQuery] = useState(initQuery||"")
 	// 📜 https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
 	const words = query.split(' ')
 

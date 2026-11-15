@@ -101,7 +101,7 @@ function Form({
 function MatchingPosts({ query }: { query: string }) {
 	const matchingPosts = getMatchingPosts(query)
 	// 🐨 colocate this state back to the Card
-	const [favorites, setFavorites] = useState<Array<string>>([])
+
 
 	return (
 		<ul className="post-list">
@@ -110,15 +110,8 @@ function MatchingPosts({ query }: { query: string }) {
 					key={post.id}
 					post={post}
 					// 💣 remove isFavorited
-					isFavorited={favorites.includes(post.id)}
 					// 💣 remove onFavoriteClick
-					onFavoriteClick={(favorite) => {
-						if (favorite) {
-							setFavorites([...favorites, post.id])
-						} else {
-							setFavorites(favorites.filter((fav) => fav !== post.id))
-						}
-					}}
+					
 				/>
 			))}
 		</ul>
@@ -128,27 +121,24 @@ function MatchingPosts({ query }: { query: string }) {
 // 💣 remove the isFavorited and onFavoriteClick
 function Card({
 	post,
-	isFavorited,
-	onFavoriteClick,
 }: {
 	post: BlogPost
-	isFavorited: boolean
-	onFavoriteClick: (isFavorited: boolean) => void
 }) {
 	// 🐨 colocate the isFavorited state to here
+		const [isFavorited, setIsFavorited] = useState<boolean>()
 	return (
 		<li>
 			{isFavorited ? (
 				<button
 					aria-label="Remove favorite"
 					// 🐨 call setIsFavorited
-					onClick={() => onFavoriteClick(false)}
+					onClick={() => setIsFavorited(false)}
 				>
 					❤️
 				</button>
 			) : (
 				// 🐨 call setIsFavorited
-				<button aria-label="Add favorite" onClick={() => onFavoriteClick(true)}>
+				<button aria-label="Add favorite" onClick={() => setIsFavorited(true)}>
 					🤍
 				</button>
 			)}

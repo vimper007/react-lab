@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { type Dispatch, type SetStateAction, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
 	type BlogPost,
@@ -14,20 +14,31 @@ function getQueryParam() {
 
 function App() {
 	// 🐨 add the useState for the query here (lift it up from the Form)
+	const [query, setQuery] = useState(getQueryParam)
+	useEffect(() => {
+		const updateQuery = () => setQuery(getQueryParam())
+		window.addEventListener('popstate', updateQuery)
+		return () => {
+			window.removeEventListener('popstate', updateQuery)
+		}
+	}, [])
 	return (
 		<div className="app">
 			{/* 🐨 pass the query and setQuery to the form */}
-			<Form />
+			<Form query={query} setQuery={setQuery} />
 			{/* 🐨 pass the query to this prop */}
-			<MatchingPosts query="" />
+			<MatchingPosts query={query} />
 		</div>
 	)
 }
 
 // 🐨 update the Form props to accept query and setQuery
-function Form() {
+type FormProps = {
+	query: string,
+	setQuery: Dispatch<SetStateAction<string>>
+}
+function Form({ query, setQuery }: FormProps) {
 	// 🐨 lift this up to the App
-	const [query, setQuery] = useState(getQueryParam)
 
 	const words = query.split(' ').map((w) => w.trim())
 
@@ -36,13 +47,7 @@ function Form() {
 	const caterpillarChecked = words.includes('caterpillar')
 
 	// 🐨 move this up to the App as well
-	useEffect(() => {
-		const updateQuery = () => setQuery(getQueryParam())
-		window.addEventListener('popstate', updateQuery)
-		return () => {
-			window.removeEventListener('popstate', updateQuery)
-		}
-	}, [])
+
 
 	function handleCheck(tag: string, checked: boolean) {
 		const newWords = checked ? [...words, tag] : words.filter((w) => w !== tag)
